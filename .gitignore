@@ -1,0 +1,30 @@
+# Models (downloaded by scripts/download_models.py)
+models/
+
+# Datasets (downloaded by scripts/download_longbench.py and select_examples.py)
+experiments/data/squad_v2_h1_subset.jsonl
+experiments/longbench/data/
+experiments/longbench/data_subset/
+
+# Run outputs
+experiments/results/
+experiments/results_streaming/
+experiments/h2/results/
+experiments/h2/results_streaming/
+experiments/longbench/results/
+experiments/longbench/results_h1h2/
+experiments/longbench/results_h1h2_anchored/
+experiments/longbench/results_qa/
+experiments/longbench/results_qa_anchored/
+experiments/longbench/results_qa_anchored_*/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
