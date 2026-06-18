@@ -123,7 +123,7 @@ The induced subgraph and the rebuilt graph are similar but not identical, and th
 | edge-weight Spearman |           0.89 |           0.80 |           0.75 |
 | top-5 edge recall    |           0.60 |           0.60 |           0.60 |
 
-H1 metrics across compression rates. {#tab:h1}
+H1 metrics across compression rates.
 
 “Compressed text is approximately the induced subgraph” holds at mild compression and weakens at aggressive compression. Reasonable, not earth-shaking.
 
@@ -137,7 +137,7 @@ Here is the twist. The spectral cut beats Sentinel on $`\mathrm{NCut}_q`$ 100 
 | $`3\times`$ |        0.471 | **0.207** |        0.446 |
 | $`5\times`$ |        0.556 | **0.282** |        0.545 |
 
-Median $`\mathrm{NCut}_q`$ (lower is better) across rates. {#tab:ncut-main}
+Median $`\mathrm{NCut}_q`$ (lower is better) across rates.
 
 So H2 is **rejected**. If you literally minimize the query-anchored normalized cut, you get a much cleaner cut than Sentinel’s. Case closed, spectral wins, ship it?
 
@@ -149,7 +149,7 @@ Not so fast. We sent the spectral cut’s compressed text to the 7B reader. The 
 | $`3\times`$ |   **0.167** |           0.254 |
 | $`5\times`$ |   **0.145** |           0.226 |
 
-Reader F1 of the spectral cut vs. Sentinel. {#tab:spec-collapse}
+Reader F1 of the spectral cut vs. Sentinel. 
 
 At $`3\times`$ and $`5\times`$ the “optimal” cut is far worse at actually answering questions. We dug into the worst cases and the reason was immediate: **the spectral cut throws away the answer.** It optimizes graph structure so aggressively that it drops the high-attention, answer-bearing sentences in favor of structurally-cohesive but query-irrelevant ones. Measured directly — what fraction of the top query-attention sentences survives the cut?
 
@@ -209,7 +209,7 @@ Breaking F1 down by task (best `anchor_frac` per row in bold) shows the rate-dep
 | narrativeqa     |     0.110 | **0.126** |     0.122 |
 | qasper          | **0.171** |     0.158 |     0.170 |
 
-Per-task reader F1 at $`2\times`$ (rate $`0.5`$). {#tab:task-2x}
+Per-task reader F1 at $`2\times`$ (rate $`0.5`$). 
 
 | **task**        |  **@0.1** | **@0.25** |  **@0.5** |
 |:----------------|----------:|----------:|----------:|
@@ -220,7 +220,7 @@ Per-task reader F1 at $`2\times`$ (rate $`0.5`$). {#tab:task-2x}
 | narrativeqa     |     0.101 |     0.095 | **0.110** |
 | qasper          | **0.182** |     0.173 |     0.167 |
 
-Per-task reader F1 at $`3\times`$ (rate $`0.67`$). {#tab:task-3x}
+Per-task reader F1 at $`3\times`$ (rate $`0.67`$). 
 
 | **task**        | **@0.1** | **@0.25** |  **@0.5** |
 |:----------------|---------:|----------:|----------:|
@@ -231,7 +231,7 @@ Per-task reader F1 at $`3\times`$ (rate $`0.67`$). {#tab:task-3x}
 | narrativeqa     |    0.097 |     0.095 | **0.098** |
 | qasper          |    0.133 |     0.158 | **0.170** |
 
-Per-task reader F1 at $`5\times`$ (rate $`0.8`$). {#tab:task-5x}
+Per-task reader F1 at $`5\times`$ (rate $`0.8`$). 
 
 The structured multi-document QA tasks — `2wikimqa`, `hotpotqa`, `multifieldqa_en` — are where the anchored cut shines, frequently beating Sentinel (e.g. `hotpotqa@0.25` at $`2\times`$ is 0.483 vs. Sentinel 0.423; `multifieldqa@0.5` at $`5\times`$ is 0.299 vs. 0.257). The hold-outs are `musique` (multi-hop) and `narrativeqa` (narrative), where Sentinel keeps a small lead and no `anchor_frac` closes it.
 
